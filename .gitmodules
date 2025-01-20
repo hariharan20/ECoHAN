@@ -1,0 +1,12 @@
+[submodule "custom_dockers"]
+	path = custom_dockers
+	url = https://github.com/hariharan20/custom_dockers
+	branch = laas_noetic_2
+[submodule "cohan_attr"]
+	path = cohan_attr
+	url = https://github.com/hariharan20/cohan_attr
+	branch = camm_dev
+[submodule "cohan_planner_multi"]
+	path = cohan_planner_multi
+	url = https://github.com/hariharan20/cohan_planner_multi
+	branch = noetic-devel
