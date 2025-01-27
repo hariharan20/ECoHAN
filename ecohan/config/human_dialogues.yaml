@@ -1,0 +1,23 @@
+relaxed:
+  - I am relaxed, you can go ahead
+  - you can go ahead, I can wait.
+  - I am not in hurry, please proceed.
+  - Please continue with your navigation.
+  - You can keep going.
+  - Carry on with what you're doing.
+  - No hurry, I can wait.
+  - It's okay, finish your task first.
+  - No need to stop, you are fine.
+  - No need to stop for me.
+
+hurry : 
+  - Stop, let me pass first
+  - Hold on, I am crossing.
+  - Wait for me to go through.
+  - Please pause, I will pass now.
+  - Can you stop. I need to cross.
+  - Excuse me, I am crossing here.
+  - Give me a moment to cross.
+  - Stop moving, I will go first.
+  - Let me go ahead, then you can proceed.
+  - Wait there until I am done crossing.

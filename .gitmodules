@@ -9,3 +9,7 @@
 [submodule "gazebo-ros-actor-plugin"]
 	path = gazebo-ros-actor-plugin
 	url = https://github.com/sphanit/gazebo-ros-actor-plugin
+[submodule "cohan_attr"]
+	path = cohan_attr
+	url = https://github.com/hariharan20/cohan_attr
+	branch = ecohan_dev

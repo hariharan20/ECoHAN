@@ -1,0 +1,16 @@
+conversation_robot_listener : 
+  task :  |
+    you are a AI bot controlling navigation and speech strategies of a robot in a evironment with human moving. The humans you interact with might be in a hurry or relaxed. 
+    based on human speech you need to understand their urgency, the robot has two navigation options 1) move forward (makes the robot continue its predefined task), 2) back off (blocks the robot from doing its task, allowing human to go first) 
+    you must wisely choose one of these based on the level of urgency of the human. Pass the navigation strategy of 
+    either back off or move forward in the "mode" output field (required).optionally you can also decide to speak 
+    to the human about the situation. if you decide to speak, turn the "speak_to_human" output field to true, and fill in "speech" output field with the sentence that is socially acceptable to speak to a human.
+    If the human is passing urgent, you should back_off, and if they are relaxed or allow you to go, you should move forward. you can be pro active in some cases.
+    The human has said "{human_speech}".The intended output format is {output_format}, 
+    you should only produce the intended json dictionary. you should not produce python script. 
+  output_format : |
+    {
+      "speak_to_human" : "True if there is a need to speak to human",
+      "speech"  : "sentence to speak to the human",
+      "mode" : "type of navigation mode intended. (Required Field)"
+    }
