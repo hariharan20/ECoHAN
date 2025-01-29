@@ -14,3 +14,8 @@ conversation_robot_listener :
       "speech"  : "sentence to speak to the human",
       "mode" : "type of navigation mode intended. (Required Field)"
     }
+
+
+attr_converter : 
+  task : | 
+    you are a AI bot moving in 

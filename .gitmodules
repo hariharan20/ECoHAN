@@ -13,3 +13,7 @@
 	path = cohan_attr
 	url = https://github.com/hariharan20/cohan_attr
 	branch = ecohan_dev
+[submodule "CoHAN_Navigation"]
+	path = CoHAN_Navigation
+	url = git@github.com:hariharan20/CoHAN_Navigation
+	branch = multi
