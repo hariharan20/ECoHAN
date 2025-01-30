@@ -1,51 +1,19 @@
 #! /usr/bin/env python
 import rospy
 from std_msgs.msg import String
-
-from langchain_core.output_parsers import JsonOutputParser
-from langchain_core.prompts import PromptTemplate
-from langchain_core.pydantic_v1 import BaseModel , Field
-from langchain_ollama import OllamaLLM
 import yaml
 import rospkg
 import time
 from rosgraph_msgs.msg import Clock
-
+from llm_chains import  *
 ros_pack = rospkg.RosPack()
-
-
-
-
-
-class robot_listener_output(BaseModel):
-    speak_to_human : bool = Field(description="set to true if there is a need for speaking with human" , default=True)
-    output : str = Field(description="the sentence, the robot needs to speak to the human")
-    mode : str  = Field(description="The navigation mode the robot needs to switch to  (back_off , move_forward)" , default="back_off")
-
-
-class proactive_robot_output(BaseModel):
-    pass 
-
-class attr_to_text_output(BaseModel):
-    
 
 
 class robot_node:
     def __init__(self)  :
-        config_location  = ros_pack.get_path('ecohan')  + '/config/conversation.yaml'
-        with open(config_location , 'r' ) as f :
-            yaml_data = yaml.safe_load(f) 
-        parser = JsonOutputParser(pydantic_object=robot_listener_output)
-        task= yaml_data['conversation_robot_start']['task']
-        prompt = PromptTemplate.from_template(task )
-        model = OllamaLLM(model = 'llama3.2' ,  temperature=0.1 , base_url='http://shinigami:11111')
-        self.output_format = yaml_data['conversation_robot_start']['output_format']
-        self.chain = prompt | model | parser  
         self.proactive_dialogue_history = []
         rospy.set_param('robot_is_listening' , True)
-        self.proactive_chain =  prompt  | model | parser # TODO: update the prompt and the parser
         rospy.Subscriber('/to_robot' , String  , self.human_speech_cb)
-        # rospy.Subscriber('/cohan_attr/full_text' , String , self.attr_cb)
         rospy.Subscriber('/clock' , Clock ,  self.proactive_cb )
     
     def robot_speaker(self , statement):
@@ -73,7 +41,7 @@ class robot_node:
                 except : 
                     number_of_tries = number_of_tries + 1
                 self.proactive_dialogue_history.append('human said : '  + str(human_speech) )
-                response  = self.proactive_chain.invoke({'dialogue_history' : self.proactive_dialogue_history})
+                response  = convo(self.proactive_dialogue_history)
                 if response['convo_over']  :
                     if 'back' in response['conclusion']: 
                         rospy.set_param('/back_off/robot' , True) 
@@ -84,10 +52,7 @@ class robot_node:
         if rospy.get_param('robot_is_listening' , True)  :
             human_speech =  data.data
             print(human_speech)
-            response = self.chain.invoke({'human_speech' :  human_speech,
-                               'output_format': self.output_format
-                               })
-            print(response)
+            response = listener(human_speech)
             if response['speak_to_human'] :
                 self.convo_started_by_human = True 
                 self.robot_speaker(response['speech'])

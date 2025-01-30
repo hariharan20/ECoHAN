@@ -1,0 +1,4 @@
+<launch>
+    <rosparam file="$(find ecohan)/config/params.yaml"/>
+    <node pkg="ecohan" type="ecohan" name="ecohan"/>    
+</launch>
