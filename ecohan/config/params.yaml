@@ -1,0 +1,8 @@
+back_off/robot: False
+back_off/human: False
+robot_trigger_time: 4.0
+robot_convo_trigger_distance: 2.0
+start_convo: False
+robot_is_listening: True
+reset_scene: True
+
