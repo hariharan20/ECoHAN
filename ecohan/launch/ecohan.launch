@@ -1,6 +1,6 @@
 <launch>
     <rosparam file="$(find ecohan)/config/params.yaml"/>
-    <!-- <node pkg="ecohan" type="ecohan.py" name="ecohan" output="screen"/>    -->
-    <!-- <node pkg="cohan_attr" type="attr.py" name="attr" output="screen"/> -->
     <node pkg="ecohan" type="scene.py" name="scene_gen" output="screen"/> 
+    <node pkg="ecohan" type="ecohan.py" name="ecohan" output="screen"/>   
+    <node pkg="cohan_attr" type="attr.py" name="attr" output="screen"/>
 </launch>

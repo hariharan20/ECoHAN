@@ -50,8 +50,8 @@ class robot_node:
                         human_speech =  rospy.wait_for_message('/to_robot'  , String , timeout=2.0)
                     except : 
                         number_of_tries = number_of_tries + 1
-                        human_speech ="Sure, I will move aside"
-                        # human_speech = "Sorry, I need to pass, in a hurry"
+                        # human_speech ="Sure, I will move aside"
+                        human_speech = "Sorry, I need to pass, in a hurry"
                     self.human_speech(human_speech)
                     rospy.loginfo(self.dialogue_history)
                     response  = listener_convo(self.dialogue_history)
